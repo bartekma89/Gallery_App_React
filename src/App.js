@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Gallery from './Gallery';
 
 const App = () => {
-  return (
-    <div>
-      <h1>Gallery app</h1>
-    </div>
-  );
+	return (
+		<div>
+			<Gallery />
+		</div>
+	);
 };
 
 export default App;
