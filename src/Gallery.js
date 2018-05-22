@@ -9,8 +9,7 @@ class Gallery extends Component {
 		super(props);
 		this.state = {
 			images: [],
-			startPage: 1,
-			currentPage: 0,
+			currentPage: 1,
 			perPage: '',
 			totalPage: 0,
 			isLoading: true,
@@ -45,7 +44,6 @@ class Gallery extends Component {
 		this.setState({
 			isLoading: true,
 		});
-		console.log(currentPage);
 		this.fetchPhotos(currentPage);
 	}
 
@@ -56,7 +54,6 @@ class Gallery extends Component {
 					<ImageList data={this.state.images} />
 
 					<Pagination
-						startPage={this.state.startPage}
 						page={this.state.currentPage}
 						quantityPages={Math.ceil(
 							this.state.totalPage / this.state.perPage

@@ -1,5 +1,7 @@
 import React from 'react';
 import Gallery from './Gallery';
+import './Reset.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
 	return (
