@@ -2,6 +2,7 @@
 	visibility: hidden;
 }
 
-.inline {
-	display: inline-block;
+.first,
+.last {
+	bacground-color: green;
 }

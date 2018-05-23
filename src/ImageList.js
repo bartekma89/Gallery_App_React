@@ -7,7 +7,11 @@ const ImagesList = props => {
 		<Image url={image.urls.small} key={image.id} />
 	));
 
-	return <ul>{images}</ul>;
+	return (
+		<div>
+			<ul>{images}</ul>
+		</div>
+	);
 };
 
 export default ImagesList;

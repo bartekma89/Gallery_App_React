@@ -32,7 +32,7 @@ class Pagination extends Component {
 		return this.props.page - 1;
 	}
 
-	hastNext() {
+	hasNext() {
 		return this.props.page < this.props.quantityPages;
 	}
 
@@ -40,9 +40,13 @@ class Pagination extends Component {
 		return this.props.page > 1;
 	}
 
-	hasFirst() {}
+	hasFirst() {
+		return this.rangeStart() !== 1;
+	}
 
-	hasLast() {}
+	hasLast() {
+		return this.rangeEnd() !== this.props.quantityPages;
+	}
 
 	render() {
 		return (
@@ -59,6 +63,10 @@ class Pagination extends Component {
 							Previous
 						</a>
 					</li>
+					<li className={!this.hasFirst() ? 'hidden' : ''}>
+						<a onClick={this.onPageChange.bind(this, 1)}>1</a>
+					</li>
+
 					{this.pages().map((page, index) => {
 						return (
 							<li
@@ -73,9 +81,19 @@ class Pagination extends Component {
 							</li>
 						);
 					})}
+					<li className={!this.hasLast() ? 'hidden' : ''}>
+						<a
+							onClick={this.onPageChange.bind(
+								this,
+								this.props.quantityPages
+							)}
+						>
+							{this.props.quantityPages}
+						</a>
+					</li>
 					<li>
 						<a
-							className={!this.nextPage() ? 'hidden' : ''}
+							className={!this.hasNext() ? 'hidden' : ''}
 							onClick={this.onPageChange.bind(
 								this,
 								this.nextPage()

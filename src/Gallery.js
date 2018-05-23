@@ -37,29 +37,38 @@ class Gallery extends Component {
 	}
 
 	componentDidMount() {
-		this.fetchPhotos(this.state.currentPage);
+		setTimeout(() => {
+			this.fetchPhotos(this.state.currentPage);
+		}, 2000);
+		//this.fetchPhotos(this.state.currentPage);
 	}
 
 	pageChange(currentPage) {
 		this.setState({
 			isLoading: true,
 		});
-		this.fetchPhotos(currentPage);
+		setTimeout(() => {
+			this.fetchPhotos(currentPage);
+		}, 2000);
+		//this.fetchPhotos(currentPage);
 	}
 
 	render() {
 		return (
-			<div>
+			<div className="container-fluid text-center">
 				<Loader isLoading={this.state.isLoading}>
-					<ImageList data={this.state.images} />
-
-					<Pagination
-						page={this.state.currentPage}
-						quantityPages={Math.ceil(
-							this.state.totalPage / this.state.perPage
-						)}
-						pageChange={this.pageChange.bind(this)}
-					/>
+					<div className="row">
+						<ImageList data={this.state.images} />
+					</div>
+					<div className="row">
+						<Pagination
+							page={this.state.currentPage}
+							quantityPages={Math.ceil(
+								this.state.totalPage / this.state.perPage
+							)}
+							pageChange={this.pageChange.bind(this)}
+						/>
+					</div>
 				</Loader>
 			</div>
 		);
