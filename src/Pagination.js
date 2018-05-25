@@ -8,6 +8,7 @@ class Pagination extends Component {
 
 	pages() {
 		let pages = [];
+
 		for (let i = this.rangeStart(); i <= this.rangeEnd(); i++) {
 			pages.push(i);
 		}
@@ -49,59 +50,68 @@ class Pagination extends Component {
 	}
 
 	render() {
+		const previous = (
+			<li>
+				<a
+					className={!this.prevPage() ? 'hidden' : ''}
+					onClick={this.onPageChange.bind(this, this.prevPage())}
+				>
+					Previous
+				</a>
+			</li>
+		);
+
+		const next = (
+			<li>
+				<a
+					className={!this.hasNext() ? 'hidden' : ''}
+					onClick={this.onPageChange.bind(this, this.nextPage())}
+				>
+					Next
+				</a>
+			</li>
+		);
+
+		const firstPage = (
+			<li className={!this.hasFirst() ? 'hidden' : ''}>
+				<a onClick={this.onPageChange.bind(this, 1)}>1</a>
+			</li>
+		);
+
+		const lastPage = (
+			<li className={!this.hasLast() ? 'hidden' : ''}>
+				<a
+					onClick={this.onPageChange.bind(
+						this,
+						this.props.quantityPages
+					)}
+				>
+					{this.props.quantityPages}
+				</a>
+			</li>
+		);
+
+		const self = this;
+
+		const pages = self.pages().map((page, index) => {
+			return (
+				<li
+					key={index}
+					className={this.props.page === page ? 'active' : ''}
+				>
+					<a onClick={this.onPageChange.bind(this, page)}>{page}</a>
+				</li>
+			);
+		});
+
 		return (
 			<nav aria-label="Page navigation">
 				<ul className="pagination pagination-sm">
-					<li>
-						<a
-							className={!this.prevPage() ? 'hidden' : ''}
-							onClick={this.onPageChange.bind(
-								this,
-								this.prevPage()
-							)}
-						>
-							Previous
-						</a>
-					</li>
-					<li className={!this.hasFirst() ? 'hidden' : ''}>
-						<a onClick={this.onPageChange.bind(this, 1)}>1</a>
-					</li>
-
-					{this.pages().map((page, index) => {
-						return (
-							<li
-								key={index}
-								className={
-									this.props.page === page ? 'active' : ''
-								}
-							>
-								<a onClick={this.onPageChange.bind(this, page)}>
-									{page}
-								</a>
-							</li>
-						);
-					})}
-					<li className={!this.hasLast() ? 'hidden' : ''}>
-						<a
-							onClick={this.onPageChange.bind(
-								this,
-								this.props.quantityPages
-							)}
-						>
-							{this.props.quantityPages}
-						</a>
-					</li>
-					<li>
-						<a
-							className={!this.hasNext() ? 'hidden' : ''}
-							onClick={this.onPageChange.bind(
-								this,
-								this.nextPage()
-							)}
-						>
-							Next
-						</a>
-					</li>
+					{previous}
+					{firstPage}
+					{pages}
+					{lastPage}
+					{next}
 				</ul>
 			</nav>
 		);

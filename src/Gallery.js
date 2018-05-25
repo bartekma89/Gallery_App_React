@@ -39,8 +39,7 @@ class Gallery extends Component {
 	componentDidMount() {
 		setTimeout(() => {
 			this.fetchPhotos(this.state.currentPage);
-		}, 2000);
-		//this.fetchPhotos(this.state.currentPage);
+		}, 1000);
 	}
 
 	pageChange(currentPage) {
@@ -49,8 +48,7 @@ class Gallery extends Component {
 		});
 		setTimeout(() => {
 			this.fetchPhotos(currentPage);
-		}, 2000);
-		//this.fetchPhotos(currentPage);
+		}, 1000);
 	}
 
 	render() {
