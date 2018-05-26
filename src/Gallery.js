@@ -10,8 +10,8 @@ class Gallery extends Component {
 		this.state = {
 			images: [],
 			currentPage: 1,
-			perPage: '',
-			totalPage: 0,
+			perPage: 12,
+			totalPhotos: 0,
 			isLoading: true,
 		};
 	}
@@ -20,13 +20,15 @@ class Gallery extends Component {
 		const accessKey =
 			'2231b86360e4f99eaeb4edd914cebc7f50f36a08317f868ba1bd437a60a7acde';
 		const url = `https://api.unsplash.com/photos/?client_id=${accessKey}`;
+		const { perPage } = this.state;
 		axios
-			.get(url, { params: { client_id: accessKey, page: page } })
+			.get(url, {
+				params: { client_id: accessKey, page: page, per_page: perPage },
+			})
 			.then(response => {
 				this.setState({
 					images: response.data,
-					perPage: parseInt(response.headers['x-per-page'], 10),
-					totalPage: parseInt(response.headers['x-total'], 10),
+					totalPhotos: parseInt(response.headers['x-total'], 10),
 					currentPage: page,
 					isLoading: false,
 				});
@@ -53,20 +55,16 @@ class Gallery extends Component {
 
 	render() {
 		return (
-			<div className="container-fluid text-center">
+			<div className="container text-center">
+				<Pagination
+					page={this.state.currentPage}
+					quantityPages={Math.ceil(
+						this.state.totalPhotos / this.state.perPage
+					)}
+					pageChange={this.pageChange.bind(this)}
+				/>
 				<Loader isLoading={this.state.isLoading}>
-					<div className="row">
-						<ImageList data={this.state.images} />
-					</div>
-					<div className="row">
-						<Pagination
-							page={this.state.currentPage}
-							quantityPages={Math.ceil(
-								this.state.totalPage / this.state.perPage
-							)}
-							pageChange={this.pageChange.bind(this)}
-						/>
-					</div>
+					<ImageList data={this.state.images} />
 				</Loader>
 			</div>
 		);

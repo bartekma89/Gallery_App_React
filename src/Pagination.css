@@ -1,0 +1,14 @@
+.hidden {
+	display: none !important;
+}
+
+nav .pagination-custom > li > a {
+	cursor: pointer;
+	color: #27ae60;
+}
+
+nav .pagination-custom > li.active > a,
+nav .pagination-custom > li.active > a:hover {
+	background-color: #27ae60;
+	border-color: #27ae60;
+}

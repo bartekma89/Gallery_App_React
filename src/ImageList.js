@@ -8,7 +8,7 @@ const ImagesList = props => {
 	));
 
 	return (
-		<div>
+		<div className="row">
 			<ul>{images}</ul>
 		</div>
 	);

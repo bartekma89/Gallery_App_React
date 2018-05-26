@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Styles.css';
+import './Pagination.css';
 
 class Pagination extends Component {
 	onPageChange(page) {
@@ -53,10 +53,11 @@ class Pagination extends Component {
 		const previous = (
 			<li>
 				<a
+					aria-label="Previous"
 					className={!this.prevPage() ? 'hidden' : ''}
 					onClick={this.onPageChange.bind(this, this.prevPage())}
 				>
-					Previous
+					<span aria-hidden="true">Previous</span>
 				</a>
 			</li>
 		);
@@ -64,10 +65,11 @@ class Pagination extends Component {
 		const next = (
 			<li>
 				<a
+					aria-label="Next"
 					className={!this.hasNext() ? 'hidden' : ''}
 					onClick={this.onPageChange.bind(this, this.nextPage())}
 				>
-					Next
+					<span aria-hidden="true">Next</span>
 				</a>
 			</li>
 		);
@@ -91,9 +93,7 @@ class Pagination extends Component {
 			</li>
 		);
 
-		const self = this;
-
-		const pages = self.pages().map((page, index) => {
+		const pages = this.pages().map((page, index) => {
 			return (
 				<li
 					key={index}
@@ -106,7 +106,7 @@ class Pagination extends Component {
 
 		return (
 			<nav aria-label="Page navigation">
-				<ul className="pagination pagination-sm">
+				<ul className="pagination pagination-sm pagination-custom">
 					{previous}
 					{firstPage}
 					{pages}
