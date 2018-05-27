@@ -3,6 +3,7 @@ import ImageList from './ImageList';
 import axios from 'axios';
 import Pagination from './Pagination';
 import Loader from './Loader.js';
+import ImageModal from './ImageModal';
 
 class Gallery extends Component {
 	constructor(props) {
@@ -13,6 +14,8 @@ class Gallery extends Component {
 			perPage: 12,
 			totalPhotos: 0,
 			isLoading: true,
+			showModal: false,
+			url: '',
 		};
 	}
 
@@ -53,6 +56,20 @@ class Gallery extends Component {
 		}, 1000);
 	}
 
+	openModal(url) {
+		this.setState({
+			showModal: true,
+			url: url,
+		});
+	}
+
+	closeModal() {
+		this.setState({
+			showModal: false,
+			url: '',
+		});
+	}
+
 	render() {
 		return (
 			<div className="container text-center">
@@ -64,7 +81,15 @@ class Gallery extends Component {
 					pageChange={this.pageChange.bind(this)}
 				/>
 				<Loader isLoading={this.state.isLoading}>
-					<ImageList data={this.state.images} />
+					<ImageList
+						data={this.state.images}
+						openModal={this.openModal.bind(this)}
+					/>
+					<ImageModal
+						isOpen={this.state.showModal}
+						closeModal={this.closeModal.bind(this)}
+						url={this.state.url}
+					/>
 				</Loader>
 			</div>
 		);
