@@ -1,8 +1,8 @@
 import React from 'react';
 import './Loader.css';
 
-const Loader = props => {
-	if (props.isLoading) {
+const Loader = ({ isLoading, children }) => {
+	if (isLoading) {
 		return (
 			<div className="load">
 				<hr />
@@ -12,7 +12,7 @@ const Loader = props => {
 			</div>
 		);
 	} else {
-		return props.children;
+		return children;
 	}
 };
 

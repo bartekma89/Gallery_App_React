@@ -18,20 +18,20 @@ class ImageModal extends Component {
 		}
 
 		const previousButton = hasPrevious && (
-			<span onClick={previousSlide.bind(this)} className="arrow">
+			<span onClick={previousSlide} className="arrow">
 				<i className="fas fa-angle-left" />
 			</span>
 		);
 
 		const nextButton = hasNext && (
-			<span onClick={nextSlide.bind(this)} className="arrow">
+			<span onClick={nextSlide} className="arrow">
 				<i className="fas fa-angle-right" />
 			</span>
 		);
 
 		return (
 			<div className="modal-overlay">
-				<div onClick={closeModal.bind(this)}>
+				<div onClick={closeModal}>
 					<a className="modal-close">
 						<i className="fas fa-times" />
 					</a>

@@ -96,7 +96,7 @@ class Gallery extends Component {
 				/>
 				<Loader isLoading={this.state.isLoading}>
 					<ImageList
-						data={this.state.images}
+						images={this.state.images}
 						openModal={this.openModal.bind(this)}
 					/>
 					<ImageModal
