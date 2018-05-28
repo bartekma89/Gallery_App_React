@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ImageList from './ImageList';
 import axios from 'axios';
-import Pagination from './Pagination';
-import Loader from './Loader.js';
-import ImageModal from './ImageModal';
+import ImageList from '../presentation/ImageList';
+import Pagination from '../presentation/Pagination';
+import Loader from '../presentation/Loader.js';
+import ImageModal from '../presentation/ImageModal';
 
 class Gallery extends Component {
 	constructor(props) {
@@ -16,6 +16,7 @@ class Gallery extends Component {
 			isLoading: true,
 			showModal: false,
 			url: '',
+			slideCount: 0,
 		};
 	}
 
@@ -56,10 +57,11 @@ class Gallery extends Component {
 		}, 1000);
 	}
 
-	openModal(url) {
+	openModal(url, index) {
 		this.setState({
 			showModal: true,
 			url: url,
+			slideCount: index,
 		});
 	}
 
@@ -67,6 +69,18 @@ class Gallery extends Component {
 		this.setState({
 			showModal: false,
 			url: '',
+		});
+	}
+
+	nextSlide() {
+		this.setState({
+			slideCount: this.state.slideCount + 1,
+		});
+	}
+
+	previousSlide() {
+		this.setState({
+			slideCount: this.state.slideCount - 1,
 		});
 	}
 
@@ -88,7 +102,13 @@ class Gallery extends Component {
 					<ImageModal
 						isOpen={this.state.showModal}
 						closeModal={this.closeModal.bind(this)}
-						url={this.state.url}
+						image={this.state.images[this.state.slideCount]}
+						nextSlide={this.nextSlide.bind(this)}
+						previousSlide={this.previousSlide.bind(this)}
+						hasPrevious={this.state.slideCount > 0}
+						hasNext={
+							this.state.slideCount < this.state.images.length - 1
+						}
 					/>
 				</Loader>
 			</div>

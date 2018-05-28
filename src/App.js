@@ -1,5 +1,5 @@
 import React from 'react';
-import Gallery from './Gallery';
+import Gallery from './container/Gallery';
 import './Reset.css';
 import './Styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';

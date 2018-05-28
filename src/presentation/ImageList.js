@@ -3,8 +3,8 @@ import Image from './Image';
 
 const ImagesList = props => {
 	const { data } = props;
-	let images = data.map(image => (
-		<Image url={image.urls.small} key={image.id} {...props} />
+	let images = data.map((image, index) => (
+		<Image url={image.urls.small} key={image.id} index={index} {...props} />
 	));
 
 	return (
