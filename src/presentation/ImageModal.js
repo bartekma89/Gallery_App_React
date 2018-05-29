@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import './Image.css';
+import PropTypes from 'prop-types';
 
 class ImageModal extends Component {
+	static propTypes = {
+		isOpen: PropTypes.bool.isRequired,
+		closeModal: PropTypes.func.isRequired,
+		image: PropTypes.object,
+		nextSlide: PropTypes.func.isRequired,
+		previousSlide: PropTypes.func.isRequired,
+		hasPrevious: PropTypes.bool.isRequired,
+		hasNext: PropTypes.bool.isRequired
+	}
+
 	render() {
 		const {
 			isOpen,

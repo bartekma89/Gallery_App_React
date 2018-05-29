@@ -1,5 +1,6 @@
 import React from 'react';
 import './Image.css';
+import PropTypes from 'prop-types';
 
 const Image = ({ url, index, openModal }) => {
 	return (
@@ -20,5 +21,11 @@ const Image = ({ url, index, openModal }) => {
 		</div>
 	);
 };
+
+Image.propTypes = {
+	url: PropTypes.string.isRequired,
+	index: PropTypes.number.isRequired,
+	openModal: PropTypes.func.isRequired
+}
 
 export default Image;

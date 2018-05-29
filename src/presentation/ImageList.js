@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from './Image';
+import PropTypes from 'prop-types';
 
 const ImagesList = props => {
 	const images = props.images.map((image, index) => (
@@ -12,5 +13,10 @@ const ImagesList = props => {
 		</div>
 	);
 };
+
+ImagesList.propTypes = {
+	images: PropTypes.array.isRequired,
+	openModal: PropTypes.func.isRequired
+}
 
 export default ImagesList;
